@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Products{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h3>Modifier ce produit</h3>
+            </div>
+            <div class="card-body">
+                {{ include('products/_form.html.twig', {'button_label': 'Modifier'}) }}
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_products_index') }}">
+                    Retour
+                </a>
+            </div>
+        </div>
+    </div>
+    {# <h3>Modifier ce produit</h3>
+
+    
+
+    <a href="{{ path('app_products_index') }}">Retour</a>
+
+    {{ include('products/_delete_form.html.twig') }} #}
+{% endblock %}

@@ -1,0 +1,82 @@
+/* base */
+
+body{
+    background-image: url('../image/R.jpg');
+}
+
+/* global file */
+.container{
+    margin-top: 5%;
+    border-radius: 10px;
+    background-color:rgb(232, 236, 238);
+}
+
+/* home */
+
+.containerHome{
+    background-color: transparent;
+}
+
+.btnHome{
+    text-decoration: none;
+    padding: 10%;
+    border-radius: 10px;
+    font-weight: bold;
+
+}
+
+.linkProduct{
+    color: white;
+    background-color: rgb(200, 26, 26);
+    
+    &:hover{
+        background-color: rgb(155, 27, 27);
+        color: white;
+        transition-duration: 1s;
+    }
+}
+
+.linkSale{
+    color: white;
+    background-color: #b061a2;
+
+    &:hover{
+        background-color: #721c63;
+        color: white;
+        transition-duration: 1s;
+    }
+}
+
+.linkDeliverie{
+    color: white;
+    background-color: rgb(232, 154, 10);
+
+    &:hover{
+        background-color: rgb(176, 124, 27);
+        color: white;
+        transition-duration: 1s;
+    }
+}
+
+.linkSheet{
+    color: white;
+    background-color: rgb(133, 129, 129);
+
+    &:hover{
+        background-color: rgb(54, 52, 52);
+        color: white;
+        transition-duration: 1s;
+    }
+}
+
+/* index products */
+
+.divBackHome{
+    background-color: transparent;
+    margin-top: 1%;
+}
+
+.linkBackHome{
+    background-color: white;
+    transition: 1s;
+}
