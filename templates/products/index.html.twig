@@ -2,7 +2,7 @@
 
 {% block title %}Products index{% endblock %}
 
-{% block body %}
+{% block body %}    
     <div class="container divBackHome">
         <a class="btn btn-outline-primary linkBackHome" href="{{ path('Acceuil') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
@@ -33,6 +33,7 @@
                             <th>PrixV</th>
                             <th>Stock Initial</th>
                             <th>Stock Livrer</th>
+                            <th>Stock Total</th>
                             <th>Stock Final</th>
                             <th width="240px">Actions</th>
                         </tr>
@@ -45,6 +46,7 @@
                             <td>{{ product.prixV }}</td>
                             <td>{{ product.stockI }}</td>
                             <td>{{ product.stockLivrer }}</td>
+                            <td>{{ product.stockTotal }}</td>
                             <td>{{ product.stockFinal }}</td>
                             <td>
                                 <form method="post" action="{{ path('app_products_delete', {'id': product.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer le produit {{product.name}}?');">

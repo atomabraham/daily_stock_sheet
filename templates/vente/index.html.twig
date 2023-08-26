@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ventes{% endblock %}
+
+{% block body %}
+<div class="container divBackHome">
+    <div class="container divBackHome">
+        <a class="btn btn-outline-primary linkBackHome" href="{{ path('Acceuil') }}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"/>
+            </svg>
+        </a> 
+    </div>
+    <div class="container mt-5">
+        <div clas="card">
+            <div class="card-header">
+                <div class="row">
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h3 class="text-left">Historique de vente</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Produit</th>
+                            <th>Prix de vente</th>
+                            <th>Quantité</th>
+                            <th>Date</th>
+                            <th>Heure</th>
+                            {# <th width="240px">Actions</th> #}
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for sale in sales %}
+                        <tr>
+                            <td>{{ sale.id }}</td>
+                            <td>{{ sale.product.name }}</td>
+                            <td>{{ sale.product.prixV }}</td>
+                            <td>{{ sale.quantity }}</td>
+                            <td>{{ sale.date|date('Y-m-d') }}</td>
+                            <td>{{ sale.date|date('H:i') }}</td>
+                            {# <td>
+                                <a class="btn btn-outline-info" href="{{ path('acheter_produit', {'id': product.id}) }}">Acheter</a>
+                            </td> #}
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">Aucune vente effectué</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>    
+            </div>
+        </div>
+</div>
+{% endblock %}

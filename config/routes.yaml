@@ -3,3 +3,7 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+acheter_produit:
+    path: '/produits/{id}/acheter'
+    controller: App\Controller\VenteController::acheterProduit

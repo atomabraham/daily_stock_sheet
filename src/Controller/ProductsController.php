@@ -26,10 +26,18 @@ class ProductsController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $product = new Products();
-        $form = $this->createForm(ProductsType::class, $product);
+        $form = $this->createForm(ProductsType::class, $product, [
+            'isEdit' => false,
+        ]);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $stockInitial = $form -> get('stockI') -> getData();
+            $stockLivrer = $form -> get('stockLivrer') -> getData();
+
+            $product -> setStockTotal($stockInitial + $stockLivrer);
+
             $entityManager->persist($product);
             $entityManager->flush();
 
@@ -53,7 +61,9 @@ class ProductsController extends AbstractController
     #[Route('/{id}/edit', name: 'app_products_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Products $product, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(ProductsType::class, $product);
+        $form = $this->createForm(ProductsType::class, $product, [
+            'isEdit' => true,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -2,31 +2,27 @@
 
 namespace App\Entity;
 
-use App\Repository\SalesRepository;
+use App\Repository\SaleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: SalesRepository::class)]
-class Sales
+#[ORM\Entity(repositoryClass: SaleRepository::class)]
+class Sale
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'sales')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Products $product = null;
 
     #[ORM\Column]
     private ?int $quantity = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
-
-    #[ORM\ManyToOne(inversedBy: 'ventes')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Products $products = null;
 
     public function getId(): ?int
     {

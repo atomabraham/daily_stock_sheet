@@ -28,6 +28,9 @@ class Products
     private ?int $stockLivrer = null;
 
     #[ORM\Column]
+    private ?int $stockTotal = null;
+
+    #[ORM\Column]
     private ?int $stockFinal = null;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Sales::class)]
@@ -36,10 +39,14 @@ class Products
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Deliveries::class)]
     private Collection $deliveries;
 
+    #[ORM\OneToMany(mappedBy: 'products', targetEntity: Sales::class)]
+    private Collection $ventes;
+
     public function __construct()
     {
         $this->sales = new ArrayCollection();
         $this->deliveries = new ArrayCollection();
+        $this->ventes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -91,6 +98,18 @@ class Products
     public function setStockLivrer(int $stockLivrer): static
     {
         $this->stockLivrer = $stockLivrer;
+
+        return $this;
+    }
+
+    public function getStockTotal(): ?int
+    {
+        return $this->stockTotal;
+    }
+
+    public function setStockTotal(int $stockTotal): static
+    {
+        $this->stockTotal = $stockTotal;
 
         return $this;
     }
@@ -166,4 +185,5 @@ class Products
 
         return $this;
     }
+    
 }
