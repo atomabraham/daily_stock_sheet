@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Sale;
 use App\Entity\Products;
 use App\Repository\ProductsRepository;
+use App\Services\StockRecordService;
 use Doctrine\ORM\EntityManagerInterface;
 use PhpParser\Node\Stmt\Continue_;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -58,6 +59,15 @@ class VenteController extends AbstractController
     }
 
 
+    //enregistrement d'une vente
+
+    private $stockRecordService;
+
+    public function __construct(StockRecordService $stockRecordService)
+    {
+        $this->stockRecordService = $stockRecordService;
+    }
+
     /**
      * @Route("/produits/{id}/acheter", name="acheter_produit")
      */
@@ -87,6 +97,7 @@ class VenteController extends AbstractController
     
             $entityManager->persist($product);
             $entityManager->flush();
+            $this->stockRecordService->createStockRecordForToday();
 
             return new RedirectResponse($this->generateUrl('AchatProduit'));
         }else{

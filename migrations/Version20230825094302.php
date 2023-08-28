@@ -21,6 +21,7 @@ final class Version20230825094302 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE products ADD stock_total INT GENERATED ALWAYS AS (stock_i + stock_livrer) STORED');
+        $this->addSql('ALTER TABLE stockRecord MODIFY date DATE');
     }
 
     public function down(Schema $schema): void

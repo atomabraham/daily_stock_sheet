@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h3>Saisissez la quantité</h1>
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_row(form.quantity, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <button class="btn my-2 {{ button_color|default('btn-outline-primary') }}">Valider</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        
+
+        
+    </div>
+{% endblock %}

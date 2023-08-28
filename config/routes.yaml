@@ -7,3 +7,10 @@ controllers:
 acheter_produit:
     path: '/produits/{id}/acheter'
     controller: App\Controller\VenteController::acheterProduit
+
+delivery_quantity:
+  path: '/deliveries/{id}/quantity'
+  controller: App\Controller\ProductsController::delivery
+  methods: ['GET', 'POST']
+  requirements:
+    id: '\d+'

@@ -2,10 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Deliveries;
 use App\Entity\Products;
+use App\Form\DeliveryType;
 use App\Form\ProductsType;
 use App\Repository\ProductsRepository;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -88,4 +93,57 @@ class ProductsController extends AbstractController
 
         return $this->redirectToRoute('app_products_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    //livraison d'un produit
+    /**
+     * @Route("/deliveries/{id}/quantity", name="delivery_quantity")
+    */
+
+    private $entityManager;
+    private $dateTime;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    
+
+    public function delivery(Request $request, Products $product,EntityManagerInterface $entityManager) : Response 
+    {
+        $delivery = new Deliveries();
+        $form = $this -> createForm(DeliveryType::class, $delivery);
+        $form -> handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $quantity = $form->getData()->getQuantity();
+
+            // Enregistrez la quantité dans le champ stockLivrer du produit
+            $stockInitial = $product -> getStockI();
+            $stockFinal = $product -> getStockFinal();
+
+            $product->setStockLivrer($quantity);
+            $product->setStockTotal($quantity + $stockInitial);
+            $product->setStockFinal($quantity + $stockFinal);
+
+            $delivery->setProduct($product);
+
+            $delivery->setDate(new DateTime());
+
+            // $entityManager = $this->$entityManager->getRepository(Products::class)->findAll();
+            $this->entityManager->persist($delivery);
+            $this->entityManager->flush();
+
+
+            return $this->redirectToRoute('Acceuil'); // Redirigez vers une page de succès après traitement du formulaire
+        }
+
+        return $this->render('delivery/quantity.html.twig', [
+            'form' => $form->createView(),
+            'product' => $product,
+        ]);
+
+
+    }
+
 }

@@ -81,14 +81,11 @@ body{
     transition: 1s;
 }
 
-#disableSockFinal{
-    background-color: red;
-}
 
 .test{
     background-color: red;
 }
 
 .disabled{
-    background-color: red;
+    background-color: rgb(136, 133, 133);
 }
