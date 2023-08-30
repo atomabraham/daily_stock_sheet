@@ -1,0 +1,31 @@
+<table class='tableaux mt-2 mb-3'>
+    <tr>
+        <th class="text-center" colspan="8">FICHE DE STOCK DU : <u> {{date | date('d/m/Y')}} </u></th>
+    </tr>
+    <tr>
+        <th class="text-center">Désignations</th>
+        <th class="text-center">Prix V</th>
+        <th class="text-center">Stock Initial</th>
+        <th class="text-center">Livrer</th>
+        <th class="text-center">Stock Total</th>
+        <th class="text-center">Vente</th>
+        <th class="text-center">Stock Final</th>
+        <th class="text-center">Total Global</th>
+    </tr>
+    {% for product in products %}
+        <tr>
+            <td>{{product.product}}</td>
+            <td class="text-center">{{product.prixV}} FCFA</td>
+            <td class="text-center">{{product.stockI}}</td>
+            <td class="text-center redColor">{{product.stockLivrer}}</td>
+            <td class="text-center">{{product.stockLivrer + product.stockI}}</td>
+            <td class="text-center redColor">{{product.stockVendu}}</td>
+            <td class="text-center blueColor">{{product.stockFinal}}</td>
+            <td class="text-center"></td>
+        </tr>
+    {% else %}
+        <tr>
+            <td class="text-center redColor" colspan="8">Désolé la fiche de stock coresspondante à cette date n'existe pas</td>
+        </tr>
+    {% endfor %}
+</table>

@@ -30,6 +30,7 @@ class StockRecordService
             $stockTotal = $product -> getStockTotal();
             $stockData[] = [
                 'product' => $product->getName(),
+                'prixV' => $product->getPrixV(),
                 'stockI' => $product->getStockI(),
                 'stockLivrer' => $product->getStockLivrer(),
                 'stockFinal' => $product->getStockFinal(),

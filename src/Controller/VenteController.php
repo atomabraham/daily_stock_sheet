@@ -97,6 +97,8 @@ class VenteController extends AbstractController
     
             $entityManager->persist($product);
             $entityManager->flush();
+
+            //mise a jour de la fiche de stock
             $this->stockRecordService->createStockRecordForToday();
 
             return new RedirectResponse($this->generateUrl('AchatProduit'));

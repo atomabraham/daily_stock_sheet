@@ -18,7 +18,10 @@ class StockRecord
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column]
+    // #[ORM\Column(type: Types::JSON)]
     private array $stock = [];
+
+    
 
     public function getId(): ?int
     {

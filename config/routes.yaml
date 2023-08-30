@@ -14,3 +14,7 @@ delivery_quantity:
   methods: ['GET', 'POST']
   requirements:
     id: '\d+'
+
+stock_list:
+    path: /stock
+    controller: App\Controller\StockRecordController::list

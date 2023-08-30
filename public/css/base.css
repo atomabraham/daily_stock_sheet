@@ -89,3 +89,38 @@ body{
 .disabled{
     background-color: rgb(136, 133, 133);
 }
+
+.stockTitle{
+    /* background-color: #2d2c2d; */
+}
+
+.submitStock{
+    border:none;
+}
+
+.print{
+    display: inline-block;
+    width: 10%;
+}
+
+.tableaux{
+    width:100%;
+}
+
+.tableaux th, .tableaux td{
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.redColor{
+    color:red;
+}
+
+.blueColor{
+    color:blue;
+}
+
+.date{
+    font-weight:bold;
+    font-size:20px;
+}
