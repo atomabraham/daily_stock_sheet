@@ -48,6 +48,8 @@ class StockRecordController extends AbstractController
         }else{
             $products = "ok";
         }
+
+
         // Afficher les fiches de stock dans un template
         return $this->render('stock_record/list.html.twig', [
             'date' => $dateChoisie,

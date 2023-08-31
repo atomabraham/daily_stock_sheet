@@ -20,6 +20,9 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             # - '../src/Services/StockRecordService.php'
+    
+    
+
         
 
     # add more service definitions when explicit configuration is needed

@@ -32,9 +32,19 @@ class ProductsController extends AbstractController
         ]);
     }
 
+    private $entityManager;
+    private $stockRecordService;
+
+    public function __construct(EntityManagerInterface $entityManager, StockRecordService $stockRecordService)
+    {
+        $this->entityManager = $entityManager;
+        $this->stockRecordService = $stockRecordService;
+    }
     /**
         *Creation d'un produit
     */
+
+    
 
     #[Route('/new', name: 'app_products_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -51,10 +61,13 @@ class ProductsController extends AbstractController
             $stockLivrer = $form -> get('stockLivrer') -> getData();
 
             $product -> setStockTotal($stockInitial + $stockLivrer);
+            $product -> setStockFinal($stockInitial + $stockLivrer);
 
             $entityManager->persist($product);
             $entityManager->flush();
 
+            //mise a jour de la fiche de stock
+            $this->stockRecordService->createStockRecordForToday();
             return $this->redirectToRoute('app_products_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -123,15 +136,8 @@ class ProductsController extends AbstractController
      * @Route("/deliveries/{id}/quantity", name="delivery_quantity")
     */
 
-    private $entityManager;
-    private $stockRecordService;
-    private $dateTime;
-
-    public function __construct(EntityManagerInterface $entityManager, StockRecordService $stockRecordService)
-    {
-        $this->entityManager = $entityManager;
-        $this->stockRecordService = $stockRecordService;
-    }
+    // private $dateTime;
+    
 
     
 
