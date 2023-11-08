@@ -51,7 +51,7 @@ class ProductsController extends AbstractController
     {
         $product = new Products();
         $form = $this->createForm(ProductsType::class, $product, [
-            'isEdit' => false,
+            'isEdit' => true,'isEditCreate' => false
         ]);
 
         $form->handleRequest($request);
@@ -97,7 +97,7 @@ class ProductsController extends AbstractController
     public function edit(Request $request, Products $product, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ProductsType::class, $product, [
-            'isEdit' => true,
+            'isEdit' => true,'isEditCreate' => true
         ]);
         $form->handleRequest($request);
 

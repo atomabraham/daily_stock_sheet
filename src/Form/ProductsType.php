@@ -17,7 +17,7 @@ class ProductsType extends AbstractType
             ->add('name', TextType::class)
             ->add('prixV', IntegerType::class)
             ->add('stockI', IntegerType::class, [
-                'disabled' => $options['isEdit'],
+                'disabled' => $options['isEditCreate'],
             ])
             ->add('stockLivrer', IntegerType::class, [
                 'disabled' => $options['isEdit'],
@@ -39,6 +39,7 @@ class ProductsType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Products::class,
             'isEdit' => false,
+            'isEditCreate' => false,
         ]);
     }
 }

@@ -69,11 +69,15 @@ class StockRecordService
             // print_r($stockData);
             // echo($previousContentStockRecord);
             
+            //verifier si la fiche de stock existe deja
             $existingRecord = $this->entityManager->getRepository(StockRecord::class)->findOneBy(['date' => $today]);
 
+            //si la fiche de stock ex ,iste deja, mettre a jour
             if($existingRecord) {
                 $stockRecord = $existingRecord -> setStock($stockData);
-            }else{
+            }
+            //si la fiche de stock existe deja, creer
+            else{
                 $stockRecord = new StockRecord();
                 $stockRecord->setDate($today);
                 $stockRecord->setStock($stockData);
